@@ -1,0 +1,73 @@
+1)print a asian country 
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result=JSON.parse(request.response);
+const asiannations = result.filter((element)=>{
+  if(element.region === "Asia"){  
+    console.log( element.name +" "+ "is a asian country ")
+  }
+})
+}
+
+
+2)Less than 2l population countrys
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result=JSON.parse(request.response);
+const populations = result.filter((element)=>{
+  if(element.population <200000){  
+    console.log( element.name +""+" is a country have less than 2Lakhs population")
+  }
+})
+}
+
+3)print country name,capital,flag
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result=JSON.parse(request.response);
+const countrydetails = result.filter((element)=>{
+  console.log("country name:" + element.name, "country capital :" +element.capital,"country flag :"+ element.flag)
+})
+}
+
+4)total population of country
+
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result=JSON.parse(request.response);
+var population = result.reduce((acc,element)=>{ 
+if(typeof acc === 'object'){
+  return acc.population+element.population
+}
+return acc+element.population
+})
+console.log("total population of  world is "+population)
+}
+ 
+
+5)us doller
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result=JSON.parse(request.response);
+var uscurrencies = result.filter((element,index)=>{ 
+if(element.currencies[0].symbol =='$'){
+  
+  console.log(element.name)
+}
+})
+}
